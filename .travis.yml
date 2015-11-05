@@ -8,6 +8,8 @@ go:
   - tip
 before_install:
   - sudo pip install codecov
+install:
+  - go get github.com/user/montanaflynn/port
 script:
   - go test
 after_success:
