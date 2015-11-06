@@ -1,4 +1,4 @@
-package port
+package utils
 
 import (
 	"fmt"
@@ -10,10 +10,10 @@ import (
 	"testing"
 )
 
-func TestGet(t *testing.T) {
-	port, err := Get()
+func TestNewPort(t *testing.T) {
+	port, err := NewPort()
 	if err != nil {
-		t.Fatalf("Got err from Get: %s", err)
+		t.Fatalf("Got err from NewPort(): %s", err)
 	}
 
 	if port == 0 {
@@ -21,10 +21,10 @@ func TestGet(t *testing.T) {
 	}
 }
 
-func TestGetUnavailablePortCheck(t *testing.T) {
-	port, err := Get()
+func TestNewPortUnavailable(t *testing.T) {
+	port, err := NewPort()
 	if err != nil {
-		t.Fatalf("Got err from Get: %s", err)
+		t.Fatalf("Got err from NewPort(): %s", err)
 	}
 
 	listener, err := net.Listen("tcp", "127.0.0.1:"+strconv.Itoa(port))
@@ -34,10 +34,10 @@ func TestGetUnavailablePortCheck(t *testing.T) {
 	listener.Close()
 }
 
-func TestCheck(t *testing.T) {
-	status, err := Check(44444)
+func TestCheckPort(t *testing.T) {
+	status, err := CheckPort(44444)
 	if err != nil {
-		t.Fatalf("Got err from Check: %s", err)
+		t.Fatalf("Got err from CheckPort: %s", err)
 	}
 
 	if status == false {
@@ -45,7 +45,7 @@ func TestCheck(t *testing.T) {
 	}
 }
 
-func TestCheckUnavailablePort(t *testing.T) {
+func TestCheckPortUnavailable(t *testing.T) {
 	testHandler := http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintln(w, "Hello Tester")
 	})
@@ -68,18 +68,18 @@ func TestCheckUnavailablePort(t *testing.T) {
 		t.Fatalf("Got err from strconv.Atoi: %s", err)
 	}
 
-	status, err := Check(portInt)
+	status, err := CheckPort(portInt)
 	if err == nil {
-		t.Fatalf("Didn't get err from Check: %s", err)
+		t.Fatalf("Didn't get err from CheckPort: %s", err)
 	}
 
 	if status {
-		t.Fatal("Got true status from Check when port is in use")
+		t.Fatal("Got true status from CheckPort when port is in use")
 	}
 }
 
-func TestToString(t *testing.T) {
-	portString := ToString(4444)
+func TestPortToString(t *testing.T) {
+	portString := PortToString(4444)
 	if portString != ":4444" {
 		t.Fatalf("Didn't get correct port string: %s != %s", portString, ":4444")
 	}

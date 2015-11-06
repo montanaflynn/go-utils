@@ -1,10 +1,23 @@
 # go-utils [![][travis-svg]][travis-url] [![][coveralls-svg]][coveralls-url] [![][godoc-svg]][godoc-url]
 
-A collection of small but helpful Golang packages that are well tested and used in production.
+A collection of common Golang functions that are well tested.
 
-### Packages
+### Install
 
-[Port](https://github.com/montanaflynn/go-utils/blob/master/port) - Get available port, check if port is available and convert a port int to a string with a colon.
+```
+go get github.com/montanaflynn/go-utils
+```
+
+### Docs
+
+You can view the [API documentation on Godoc.org](http://godoc.org/github.com/montanaflynn/go-utils) or read the docs offline with the following commands:
+
+```
+godoc $GOPATH/src/github.com/montanaflynn/go-utils
+godoc $GOPATH/src/github.com/montanaflynn/go-utils Get
+godoc $GOPATH/src/github.com/montanaflynn/go-utils Check
+godoc $GOPATH/src/github.com/montanaflynn/go-utils ToString
+```
 
 ### License
 

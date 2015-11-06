@@ -1,4 +1,4 @@
-package port
+package utils
 
 import (
 	"net"
@@ -6,7 +6,7 @@ import (
 )
 
 // Get an available port
-func Get() (port int, err error) {
+func NewPort() (port int, err error) {
 
 	// Create a new server without specifying a port
 	// which will result in an open port being chosen
@@ -36,7 +36,7 @@ func Get() (port int, err error) {
 }
 
 // Check if a port is available
-func Check(port int) (status bool, err error) {
+func CheckPort(port int) (status bool, err error) {
 
 	// Concatenate a colon and the port
 	host := ":" + strconv.Itoa(port)
@@ -59,6 +59,6 @@ func Check(port int) (status bool, err error) {
 }
 
 // ToString prefixes a colon to the port
-func ToString(port int) string {
+func PortToString(port int) string {
 	return ":" + strconv.Itoa(port)
 }
